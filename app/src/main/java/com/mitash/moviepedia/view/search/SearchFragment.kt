@@ -90,20 +90,12 @@ class SearchFragment : BackHandledFragment(), Injectable {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 AppUtil.hideKeyboard(mBinding.svSearch)
                 mBinding.svSearch.clearFocus()
-                if (query?.isNotEmpty()!!) {
-                    mSearchViewModel.setQuery(query)
-                } else {
-                    mSearchViewModel.clearSearchTable()
-                }
+                mSearchViewModel.setQuery(query!!)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText?.isNotEmpty()!!) {
-                    mSearchViewModel.setQuery(newText)
-                } else {
-                    mSearchViewModel.clearSearchTable()
-                }
+                mSearchViewModel.setQuery(newText!!)
                 return true
             }
         })
