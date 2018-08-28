@@ -33,7 +33,7 @@ class MoviePediaApp : Application(), HasActivityInjector, HasServiceInjector {
             exception.printStackTrace(PrintWriter(sw))
             val exceptionAsString = sw.toString()
             Timber.e("  ---->  %s", exceptionAsString)
-            Timber.e("uncaughtException: Exception ENDS ##############")
+            Timber.e("uncaughtException: Exception ENDS")
         }
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

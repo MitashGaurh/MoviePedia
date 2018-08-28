@@ -4,11 +4,11 @@ import android.content.Context
 import android.graphics.Matrix
 import android.graphics.PointF
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import android.widget.ImageView
+import timber.log.Timber
 
 open class TouchImageView : ImageView {
 
@@ -185,7 +185,7 @@ open class TouchImageView : ImageView {
             val bmWidth = drawable.intrinsicWidth
             val bmHeight = drawable.intrinsicHeight
 
-            Log.d("bmSize", "bmWidth: $bmWidth bmHeight : $bmHeight")
+            Timber.tag(TAG).d("bmWidth: $bmWidth bmHeight : $bmHeight")
 
             val scaleX = viewWidth.toFloat() / bmWidth.toFloat()
             val scaleY = viewHeight.toFloat() / bmHeight.toFloat()
@@ -209,6 +209,7 @@ open class TouchImageView : ImageView {
 
     companion object {
 
+        private const val TAG = "TouchImageView"
         // We can be in one of these 3 states
         internal const val NONE = 0
         internal const val DRAG = 1

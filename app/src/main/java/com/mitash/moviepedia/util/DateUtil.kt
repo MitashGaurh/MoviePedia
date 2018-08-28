@@ -1,7 +1,7 @@
 package com.mitash.moviepedia.util
 
 import android.text.TextUtils
-import android.util.Log
+import timber.log.Timber
 import java.text.DateFormatSymbols
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -55,7 +55,7 @@ private constructor() {
             try {
                 date = formatDateTime.parse(dateString)
             } catch (parseException: ParseException) {
-                Log.e(TAG, "Exception while parsing " + dateString + "  to " +
+                Timber.tag(TAG).e("Exception while parsing " + dateString + "  to " +
                         "DateTime !!", parseException)
             }
 
@@ -70,7 +70,7 @@ private constructor() {
             try {
                 date = format.parse(dateString)
             } catch (parseException: ParseException) {
-                Log.e(TAG, "Exception while parsing " + dateString + " to Date " +
+                Timber.tag(TAG).e("Exception while parsing " + dateString + " to Date " +
                         "!! ", parseException)
             }
 
