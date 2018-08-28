@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cast"
+            type="com.mitash.moviepedia.db.entity.Cast" />
+
+        <variable
+            name="credit"
+            type="com.mitash.moviepedia.vo.apiresult.PersonCredits.Cast" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_5_dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black_overlay"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="140dp"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                app:imageUrl="@{cast != null ? cast.profilePath : credit.posterPath}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/dimen_5_dp"
+                android:paddingStart="@dimen/dimen_5_dp"
+                android:paddingTop="@dimen/dimen_10_dp"
+                android:text="@{cast != null ? cast.name : (credit.title != null ? credit.title : credit.name)}"
+                android:textColor="@color/colorAccent"
+                tools:text="Cast Name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/dimen_10_dp"
+                android:paddingEnd="@dimen/dimen_5_dp"
+                android:paddingStart="@dimen/dimen_5_dp"
+                android:text="@{cast != null ? cast.character : credit.character}"
+                android:textColor="@color/colorTextDarkWhite"
+                tools:text="Cast Name" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>

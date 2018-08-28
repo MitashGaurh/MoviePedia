@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="@style/AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="autoCompleteTextViewStyle">@style/CursorColor</item>
+        <item name="android:editTextColor">@color/colorPrimaryDark</item>
+        <item name="android:textColorHint">@color/colorTabUnselected</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="CursorColor" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textCursorDrawable">@drawable/color_cursor</item>
+    </style>
+
+    <style name="FullscreenTheme">
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+    </style>
+
+</resources>

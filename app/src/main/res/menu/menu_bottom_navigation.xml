@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_discover"
+        android:icon="@drawable/ic_explore"
+        android:title="Discover" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="Search" />
+
+    <item
+        android:id="@+id/action_interest"
+        android:icon="@drawable/ic_movie_filter"
+        android:title="Interests" />
+
+    <item
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_more"
+        android:title="More" />
+</menu>
