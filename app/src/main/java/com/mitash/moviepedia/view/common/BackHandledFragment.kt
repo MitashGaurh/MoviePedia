@@ -2,7 +2,6 @@ package com.mitash.moviepedia.view.common
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 
 /**
  * Created by Mitash Gaurh on 4/20/2018.
@@ -50,16 +49,16 @@ abstract class BackHandledFragment : Fragment() {
         return mBackHandlerInterface?.popBackStack()!!
     }
 
-    fun onQueueTransaction(stackTransaction: StackTransaction) {
-        mBackHandlerInterface?.triggerStackTransaction(stackTransaction)
+    fun onQueueTransaction(fragment: Fragment) {
+        mBackHandlerInterface?.triggerStackTransaction(fragment)
     }
 
     interface BackHandlerInterface {
 
         fun setSelectedFragment(backHandledFragment: BackHandledFragment?)
-
+        
         fun popBackStack(): Boolean
 
-        fun triggerStackTransaction(stackTransaction: StackTransaction)
+        fun triggerStackTransaction(fragment: Fragment)
     }
 }

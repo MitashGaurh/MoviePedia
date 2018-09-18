@@ -13,7 +13,6 @@ import com.mitash.moviepedia.view.more.MoreFragment
 import com.mitash.moviepedia.view.search.SearchFragment
 import com.mitash.moviepedia.vo.event.SingleLiveEvent
 import com.mitash.moviepedia.vo.navigationstack.StackHolder
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 import com.mitash.moviepedia.vo.navigationstack.Traverse
 import java.util.*
 import javax.inject.Inject
@@ -81,13 +80,10 @@ class NavigationViewModel @Inject constructor(
         return traverse == mCurrentTraverse
     }
 
-    fun performStackFragmentsTransaction(stackTransaction: StackTransaction) {
+    fun performStackFragmentsTransaction(fragment: Fragment) {
+        val stack: Stack<Fragment>? = mStackHolder[mCurrentTraverse?.value]?.stack
 
-        val stack: Stack<Fragment>? = mStackHolder[stackTransaction.traverse.value]?.stack
-
-        mCurrentTraverse = stackTransaction.traverse
-
-        performStackOperation(stack!!, stackTransaction.fragment, false)
+        performStackOperation(stack!!, fragment, false)
 
     }
 

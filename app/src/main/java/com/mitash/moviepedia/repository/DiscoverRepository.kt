@@ -31,6 +31,7 @@ import kotlin.collections.ArrayList
 class DiscoverRepository @Inject constructor(
         private val mAppExecutors: AppExecutors,
         private val mMoviePediaDb: MoviePediaDb,
+        private val mInterestRepository: InterestRepository,
         private val mMoviePediaService: MoviePediaService
 ) {
     companion object {
@@ -52,7 +53,7 @@ class DiscoverRepository @Inject constructor(
                         mMoviePediaDb.genreDao().insertGenres(response?.body()?.genres!!)
                         mAppExecutors.networkIO().execute {
                             if (isNestedCall) {
-                                performNestedApiCall(context, callback)
+                                performNestedApiCall(context, true, callback)
                             } else {
                                 callback(true)
                             }
@@ -64,7 +65,7 @@ class DiscoverRepository @Inject constructor(
         }
     }
 
-    fun performNestedApiCall(context: Context, callback: (Boolean) -> Unit) {
+    fun performNestedApiCall(context: Context, isSyncCall: Boolean, callback: (Boolean) -> Unit) {
         discoverPopularMovies { response ->
             if (response) {
                 discoverBestMoviesFromYear { success ->
@@ -78,7 +79,16 @@ class DiscoverRepository @Inject constructor(
                                                 discoverUpcomingMovies { success ->
                                                     if (success) {
                                                         discoverGenreInterestMovies(context) {
-                                                            insertDiscoverHeaders(context, callback)
+                                                            insertDiscoverHeaders(context) { success ->
+                                                                if (success) {
+                                                                    if (isSyncCall) {
+                                                                        initiateInterestDataFetch(context, callback)
+                                                                    } else {
+                                                                        callback(true)
+                                                                    }
+                                                                }
+                                                            }
+
                                                         }
                                                     }
                                                 }
@@ -91,6 +101,15 @@ class DiscoverRepository @Inject constructor(
                     }
                 }
             }
+        }
+    }
+
+    private fun initiateInterestDataFetch(context: Context, callback: (Boolean) -> Unit) {
+        val selectedGenreString = AppUtil.provideSelectedGenresString(context)!!
+        if (selectedGenreString.isNotEmpty()) {
+            mInterestRepository.fetchMoviesBasedOnGenreIds(selectedGenreString, callback)
+        } else {
+            callback.invoke(true)
         }
     }
 

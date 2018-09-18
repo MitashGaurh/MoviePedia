@@ -29,7 +29,6 @@ import com.mitash.moviepedia.view.person.PersonFragment
 import com.mitash.moviepedia.view.youtube.YoutubeActivity
 import com.mitash.moviepedia.vo.Status
 import com.mitash.moviepedia.vo.apiresult.MovieDetail
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 import com.mitash.moviepedia.vo.navigationstack.Traverse
 import javax.inject.Inject
 
@@ -191,21 +190,10 @@ class MovieFragment : BackHandledFragment(), Injectable {
 
     private fun initSimilarRecyclerView() {
         val adapter = DiscoverHorizontalAdapter(mAppExecutors) { movie ->
-            when (mSelectedTraverse) {
-                Traverse.DISCOVER -> onQueueTransaction(StackTransaction(newInstance(
-                        movie._id, movie.title!!, null, Traverse.DISCOVER.value)
-                        , Traverse.DISCOVER))
-                Traverse.SEARCH -> onQueueTransaction(StackTransaction(newInstance(
-                        movie._id, movie.title!!, null, Traverse.SEARCH.value)
-                        , Traverse.SEARCH))
-                Traverse.INTEREST -> onQueueTransaction(StackTransaction(newInstance(
-                        movie._id, movie.title!!, null, Traverse.INTEREST.value)
-                        , Traverse.INTEREST))
-                else -> {
-                    throw IllegalArgumentException("Traverse not found")
-                }
-            }
+            onQueueTransaction(newInstance(movie._id, movie.title!!, null, Traverse.DISCOVER.value))
+
         }
+
         this.mSimilarAdapter = adapter
 
         mBinding.rvMovieSimilar.adapter = adapter
@@ -323,25 +311,9 @@ class MovieFragment : BackHandledFragment(), Injectable {
                     }
 
                     override fun onCastItemClick(item: Cast) {
-                        when (mSelectedTraverse) {
-                            Traverse.DISCOVER -> onQueueTransaction(StackTransaction(PersonFragment.newInstance(
-                                    item.id!!, item.name!!, Traverse.DISCOVER.value)
-                                    ,
-                                    Traverse.DISCOVER))
-                            Traverse.SEARCH -> onQueueTransaction(StackTransaction(PersonFragment.newInstance(
-                                    item.id!!, item.name!!, Traverse.SEARCH.value)
-                                    ,
-                                    Traverse.SEARCH))
-                            Traverse.INTEREST -> onQueueTransaction(StackTransaction(PersonFragment.newInstance(
-                                    item.id!!, item.name!!, Traverse.INTEREST.value)
-                                    ,
-                                    Traverse.INTEREST))
-                            else -> {
-                                throw IllegalArgumentException("Traverse not found")
-                            }
-                        }
+                        onQueueTransaction(PersonFragment.newInstance(
+                                item.id!!, item.name!!, Traverse.DISCOVER.value))
                     }
-
                 })
             } else {
                 mCastAdapter.submitList(emptyList<Cast>())
@@ -386,20 +358,8 @@ class MovieFragment : BackHandledFragment(), Injectable {
 
     private fun setUpCollectionClick(belongsToCollection: MovieDetail.BelongsToCollection) {
         mBinding.cvCollection.setOnClickListener {
-            when (mSelectedTraverse) {
-                Traverse.DISCOVER -> onQueueTransaction(StackTransaction(CollectionFragment.newInstance(
-                        belongsToCollection._id!!, belongsToCollection.name!!, Traverse.DISCOVER.value),
-                        Traverse.DISCOVER))
-                Traverse.SEARCH -> onQueueTransaction(StackTransaction(CollectionFragment.newInstance(
-                        belongsToCollection._id!!, belongsToCollection.name!!, Traverse.SEARCH.value),
-                        Traverse.SEARCH))
-                Traverse.INTEREST -> onQueueTransaction(StackTransaction(CollectionFragment.newInstance(
-                        belongsToCollection._id!!, belongsToCollection.name!!, Traverse.INTEREST.value),
-                        Traverse.INTEREST))
-                else -> {
-                    throw IllegalArgumentException("Traverse not found")
-                }
-            }
+            onQueueTransaction(CollectionFragment.newInstance(
+                    belongsToCollection._id!!, belongsToCollection.name!!, Traverse.DISCOVER.value))
         }
     }
 

@@ -30,7 +30,7 @@ class DiscoverViewModel @Inject constructor(
 
     fun initiateFetchMoviesCall(context: Context, callback: (Boolean) -> Unit) {
         mAppExecutors.networkIO().execute {
-            mDiscoverRepository.performNestedApiCall(context) {
+            mDiscoverRepository.performNestedApiCall(context, false) {
                 callback(it)
             }
         }

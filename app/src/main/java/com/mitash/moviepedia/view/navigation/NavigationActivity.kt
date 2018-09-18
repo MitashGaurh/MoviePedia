@@ -14,7 +14,6 @@ import com.mitash.moviepedia.databinding.ActivityNavigationBinding
 import com.mitash.moviepedia.util.ActivityUtils
 import com.mitash.moviepedia.util.BottomNavigationHelper
 import com.mitash.moviepedia.view.common.BackHandledFragment
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
@@ -99,7 +98,7 @@ class NavigationActivity : AppCompatActivity(), HasSupportFragmentInjector
         return mNavigationViewModel.popBackStack()
     }
 
-    override fun triggerStackTransaction(stackTransaction: StackTransaction) {
-        mNavigationViewModel.performStackFragmentsTransaction(stackTransaction)
+    override fun triggerStackTransaction(fragment: Fragment) {
+        mNavigationViewModel.performStackFragmentsTransaction(fragment)
     }
 }

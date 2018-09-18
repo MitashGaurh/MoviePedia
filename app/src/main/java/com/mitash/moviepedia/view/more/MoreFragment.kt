@@ -23,8 +23,6 @@ import com.mitash.moviepedia.view.common.BackHandledFragment
 import com.mitash.moviepedia.view.interest.InterestEditFragment
 import com.mitash.moviepedia.view.navigation.NavigationActivity
 import com.mitash.moviepedia.vo.AppConstants
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
-import com.mitash.moviepedia.vo.navigationstack.Traverse
 import com.mitash.moviepedia.vo.stringSetLiveData
 import javax.inject.Inject
 
@@ -82,8 +80,7 @@ class MoreFragment : BackHandledFragment(), Injectable {
         initRecyclerView()
 
         mBinding.btnEdit.setOnClickListener {
-            onQueueTransaction(StackTransaction(InterestEditFragment.newInstance()
-                    , Traverse.MORE))
+            onQueueTransaction(InterestEditFragment.newInstance())
         }
 
         subscribeToLiveData()

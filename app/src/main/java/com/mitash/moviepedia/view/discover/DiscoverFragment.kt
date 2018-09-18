@@ -20,7 +20,6 @@ import com.mitash.moviepedia.view.common.BackHandledFragment
 import com.mitash.moviepedia.view.movie.MovieFragment
 import com.mitash.moviepedia.view.navigation.NavigationActivity
 import com.mitash.moviepedia.vo.AppConstants
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 import com.mitash.moviepedia.vo.navigationstack.Traverse
 import com.mitash.moviepedia.vo.stringSetLiveData
 import javax.inject.Inject
@@ -95,9 +94,7 @@ class DiscoverFragment : BackHandledFragment(), Injectable {
 
     private fun initRecyclerView() {
         val adapter = DiscoverVerticalAdapter(mAppExecutors) { movie ->
-            onQueueTransaction(StackTransaction(
-                    MovieFragment.newInstance(movie._id, movie.title!!, movie.fetchType, Traverse.DISCOVER.value)
-                    , Traverse.DISCOVER))
+            onQueueTransaction(MovieFragment.newInstance(movie._id, movie.title!!, movie.fetchType, Traverse.DISCOVER.value))
         }
         this.mAdapter = adapter
 

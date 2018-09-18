@@ -19,7 +19,6 @@ import com.mitash.moviepedia.view.common.BackHandledFragment
 import com.mitash.moviepedia.view.genre.GenreSelectFragment
 import com.mitash.moviepedia.view.navigation.NavigationActivity
 import com.mitash.moviepedia.vo.AppConstants
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
@@ -94,7 +93,7 @@ class SplashActivity : FragmentActivity(), HasSupportFragmentInjector, BackHandl
         return false
     }
 
-    override fun triggerStackTransaction(stackTransaction: StackTransaction) {
+    override fun triggerStackTransaction(fragment: Fragment) {
 
     }
 }

@@ -22,7 +22,6 @@ import com.mitash.moviepedia.view.common.BackHandledFragment
 import com.mitash.moviepedia.view.movie.MovieFragment
 import com.mitash.moviepedia.view.navigation.NavigationActivity
 import com.mitash.moviepedia.vo.AppConstants
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 import com.mitash.moviepedia.vo.navigationstack.Traverse
 import com.mitash.moviepedia.vo.stringSetLiveData
 import javax.inject.Inject
@@ -98,9 +97,8 @@ class InterestFragment : BackHandledFragment(), Injectable {
 
     private fun initRecyclerView() {
         val adapter = InterestVerticalAdapter(mAppExecutors) { movie ->
-            onQueueTransaction(StackTransaction(MovieFragment.newInstance(
-                    movie._id, movie.title!!, null, Traverse.INTEREST.value)
-                    , Traverse.INTEREST))
+            onQueueTransaction(MovieFragment.newInstance(
+                    movie._id, movie.title!!, null, Traverse.INTEREST.value))
         }
 
         this.mAdapter = adapter

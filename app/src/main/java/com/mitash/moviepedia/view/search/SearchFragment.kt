@@ -25,7 +25,6 @@ import com.mitash.moviepedia.view.common.BackHandledFragment
 import com.mitash.moviepedia.view.movie.MovieFragment
 import com.mitash.moviepedia.view.person.PersonFragment
 import com.mitash.moviepedia.vo.AppConstants
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 import com.mitash.moviepedia.vo.navigationstack.Traverse
 import javax.inject.Inject
 
@@ -104,13 +103,11 @@ class SearchFragment : BackHandledFragment(), Injectable {
     private fun initRecyclerView() {
         val adapter = SearchAdapter(mAppExecutors, this.activity!!) { search ->
             if (search.mediaType == AppConstants.SearchConstants.MEDIA_TYPE_MOVIE) {
-                onQueueTransaction(StackTransaction(
-                        MovieFragment.newInstance(search._id, search.title!!, null, Traverse.SEARCH.value)
-                        , Traverse.SEARCH))
+                onQueueTransaction(MovieFragment.newInstance(
+                        search._id, search.title!!, null, Traverse.SEARCH.value))
             } else if (search.mediaType == AppConstants.SearchConstants.MEDIA_TYPE_PERSON) {
-                onQueueTransaction(StackTransaction(PersonFragment.newInstance(
-                        search._id, search.name!!, Traverse.SEARCH.value)
-                        , Traverse.SEARCH))
+                onQueueTransaction(PersonFragment.newInstance(
+                        search._id, search.name!!, Traverse.SEARCH.value))
             }
         }
         this.mAdapter = adapter

@@ -23,10 +23,10 @@ import com.mitash.moviepedia.util.autoCleared
 import com.mitash.moviepedia.view.common.BackHandledFragment
 import com.mitash.moviepedia.view.common.infiniteviewpager.InfinitePagerAdapter
 import com.mitash.moviepedia.view.movie.MovieFragment
-import com.mitash.moviepedia.vo.*
+import com.mitash.moviepedia.vo.AppConstants
+import com.mitash.moviepedia.vo.Status
 import com.mitash.moviepedia.vo.apiresult.PersonCredits
 import com.mitash.moviepedia.vo.apiresult.PersonImage
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 import com.mitash.moviepedia.vo.navigationstack.Traverse
 import java.util.*
 import javax.inject.Inject
@@ -176,20 +176,7 @@ class PersonFragment : BackHandledFragment(), Injectable {
     private fun initCreditsRecyclerView() {
         val adapter = PersonBoundAdapter<PersonCredits.Cast>(mAppExecutors) { credit ->
             if (credit.mediaType == AppConstants.SearchConstants.MEDIA_TYPE_MOVIE) {
-                when (mSelectedTraverse) {
-                    Traverse.DISCOVER -> onQueueTransaction(StackTransaction(MovieFragment.newInstance(
-                            credit._id, credit.title!!, null, Traverse.DISCOVER.value),
-                            Traverse.DISCOVER))
-                    Traverse.SEARCH -> onQueueTransaction(StackTransaction(MovieFragment.newInstance(
-                            credit._id, credit.title!!, null, Traverse.SEARCH.value),
-                            Traverse.SEARCH))
-                    Traverse.INTEREST -> onQueueTransaction(StackTransaction(MovieFragment.newInstance(
-                            credit._id, credit.title!!, null, Traverse.INTEREST.value),
-                            Traverse.INTEREST))
-                    else -> {
-                        throw IllegalArgumentException("Traverse not found")
-                    }
-                }
+                onQueueTransaction(MovieFragment.newInstance(credit._id, credit.title!!, null, Traverse.DISCOVER.value))
             }
         }
         this.mCreditAdapter = adapter

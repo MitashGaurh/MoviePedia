@@ -19,7 +19,6 @@ import com.mitash.moviepedia.di.Injectable
 import com.mitash.moviepedia.util.autoCleared
 import com.mitash.moviepedia.view.common.BackHandledFragment
 import com.mitash.moviepedia.view.movie.MovieFragment
-import com.mitash.moviepedia.vo.navigationstack.StackTransaction
 import com.mitash.moviepedia.vo.Status
 import com.mitash.moviepedia.vo.navigationstack.Traverse
 import javax.inject.Inject
@@ -128,21 +127,10 @@ class CollectionFragment : BackHandledFragment(), Injectable {
 
     private fun initPartsRecyclerView() {
         val adapter = CollectionPartsAdapter(mAppExecutors) { part ->
-            when (mSelectedTraverse) {
-                Traverse.DISCOVER -> onQueueTransaction(StackTransaction(MovieFragment.newInstance(
-                        part._id, part.title!!, null, Traverse.DISCOVER.value),
-                        Traverse.DISCOVER))
-                Traverse.SEARCH -> onQueueTransaction(StackTransaction(MovieFragment.newInstance(
-                        part._id, part.title!!, null, Traverse.SEARCH.value),
-                        Traverse.SEARCH))
-                Traverse.INTEREST -> onQueueTransaction(StackTransaction(MovieFragment.newInstance(
-                        part._id, part.title!!, null, Traverse.INTEREST.value),
-                        Traverse.INTEREST))
-                else -> {
-                    throw IllegalArgumentException("Traverse not found")
-                }
-            }
+            onQueueTransaction(MovieFragment.newInstance(
+                    part._id, part.title!!, null, Traverse.DISCOVER.value))
         }
+
         this.mPartsAdapter = adapter
 
         mBinding.rvCollectionParts.adapter = adapter
