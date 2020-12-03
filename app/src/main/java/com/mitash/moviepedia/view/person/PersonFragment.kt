@@ -114,7 +114,7 @@ class PersonFragment : BackHandledFragment(), Injectable {
                 }
 
                 if (arguments!!.containsKey(EXTRA_PERSON_NAME)) {
-                    initToolBar(arguments!!.getString(EXTRA_PERSON_NAME))
+                    initToolBar(arguments!!.getString(EXTRA_PERSON_NAME)!!)
                 }
 
                 initImagesRecyclerView()

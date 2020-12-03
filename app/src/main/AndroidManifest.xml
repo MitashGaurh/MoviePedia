@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".view.navigation.NavigationActivity"
@@ -54,11 +55,11 @@
                 android:resource="@xml/authenticator" />
         </service>
 
-        <provider
+        <!--<provider
             android:name=".sync.StubContentProvider"
             android:authorities="@string/authority"
             android:exported="false"
-            android:syncable="true" />
+            android:syncable="true" />-->
 
         <activity
             android:name=".view.splash.SplashActivity"

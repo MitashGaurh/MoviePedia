@@ -58,12 +58,12 @@ class MoviePediaSyncAdapter @Inject constructor(
             //syncImmediately(context)
         }
 
-        private fun configurePeriodicSync(context: Context, synC_INTERVAL: Long, synC_FLEXTIME: Long) {
+        private fun configurePeriodicSync(context: Context, syncInterval: Long, syncFlextime: Long) {
             val account = getSyncAccount(context)
             val authority = context.getString(R.string.authority)
 
             val request = SyncRequest.Builder()
-                    .syncPeriodic(synC_INTERVAL, synC_FLEXTIME)
+                    .syncPeriodic(syncInterval, syncFlextime)
                     .setSyncAdapter(account, authority)
                     .setExtras(Bundle())
                     .build()

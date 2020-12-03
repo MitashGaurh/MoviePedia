@@ -68,6 +68,7 @@ dependencies {
     implementation deps.kotlin.reflect
     implementation deps.timber
     implementation 'com.facebook.shimmer:shimmer:0.2.0'
+
     kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler
     kapt deps.room.compiler

@@ -46,7 +46,7 @@ interface MoviePediaService {
                                 , @Query("vote_count.gte") voteCountStartBound: Int): Call<Page>
 
 
-    @GET("/3/discover/movie")
+    @GET("/3/discover/movie/")
     fun fetchTrendingMovies(@Query("sort_by") sortBy: SortBy
                             , @Query("primary_release_date.gte") releaseDateStart: String
                             , @Query("primary_release_date.lte") releaseDateEnd: String): Call<Page>

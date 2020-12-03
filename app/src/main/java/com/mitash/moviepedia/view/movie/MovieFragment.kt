@@ -102,7 +102,7 @@ class MovieFragment : BackHandledFragment(), Injectable {
             if (arguments!!.containsKey(EXTRA_MOVIE_ID)) {
                 if (arguments!!.containsKey(EXTRA_FETCH_TYPE)) {
                     mMovieViewModel.subscribeLocalMovieLiveData(arguments!!.getInt(EXTRA_MOVIE_ID)
-                            , arguments!!.getString(EXTRA_FETCH_TYPE))
+                            , arguments!!.getString(EXTRA_FETCH_TYPE)!!)
                 } else {
                     mMovieViewModel.subscribeRemoteMovieLiveData(arguments!!.getInt(EXTRA_MOVIE_ID))
                 }
@@ -120,7 +120,7 @@ class MovieFragment : BackHandledFragment(), Injectable {
 
                 mMovieViewModel.setBooleanLiveData(true)
                 if (arguments!!.containsKey(EXTRA_MOVIE_TITLE)) {
-                    initToolBar(arguments!!.getString(EXTRA_MOVIE_TITLE))
+                    initToolBar(arguments!!.getString(EXTRA_MOVIE_TITLE)!!)
                 }
             }
         }

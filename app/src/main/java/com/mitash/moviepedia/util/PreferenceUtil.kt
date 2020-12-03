@@ -172,7 +172,7 @@ private constructor() {
             val prefs = PreferenceManager
                     .getDefaultSharedPreferences(context)
             return if (prefs.contains(prefKey))
-                prefs.getStringSet(prefKey, HashSet())
+                prefs.getStringSet(prefKey, HashSet())!!
             else
                 HashSet()
 

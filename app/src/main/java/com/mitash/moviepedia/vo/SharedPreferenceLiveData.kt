@@ -36,7 +36,7 @@ class SharedPreferenceIntLiveData(sharedPrefs: SharedPreferences, key: String, d
 
 class SharedPreferenceStringLiveData(sharedPrefs: SharedPreferences, key: String, defValue: String) :
         SharedPreferenceLiveData<String>(sharedPrefs, key, defValue) {
-    override fun getValueFromPreferences(key: String, defValue: String): String = mSharedPrefs.getString(key, defValue)
+    override fun getValueFromPreferences(key: String, defValue: String): String = mSharedPrefs.getString(key, defValue)!!
 }
 
 class SharedPreferenceBooleanLiveData(sharedPrefs: SharedPreferences, key: String, defValue: Boolean) :
@@ -56,7 +56,7 @@ class SharedPreferenceLongLiveData(sharedPrefs: SharedPreferences, key: String, 
 
 class SharedPreferenceStringSetLiveData(sharedPrefs: SharedPreferences, key: String, defValue: Set<String>) :
         SharedPreferenceLiveData<Set<String>>(sharedPrefs, key, defValue) {
-    override fun getValueFromPreferences(key: String, defValue: Set<String>): Set<String> = mSharedPrefs.getStringSet(key, defValue)
+    override fun getValueFromPreferences(key: String, defValue: Set<String>): Set<String> = mSharedPrefs.getStringSet(key, defValue)!!
 }
 
 fun SharedPreferences.intLiveData(key: String, defValue: Int): SharedPreferenceLiveData<Int> {

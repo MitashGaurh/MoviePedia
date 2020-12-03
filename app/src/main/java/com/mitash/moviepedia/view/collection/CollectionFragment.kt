@@ -93,7 +93,7 @@ class CollectionFragment : BackHandledFragment(), Injectable {
             }
 
             if (arguments!!.containsKey(EXTRA_COLLECTION_NAME)) {
-                initToolBar(arguments!!.getString(EXTRA_COLLECTION_NAME))
+                initToolBar(arguments!!.getString(EXTRA_COLLECTION_NAME)!!)
             }
 
             if (arguments!!.containsKey(EXTRA_COLLECTION_ID)) {
